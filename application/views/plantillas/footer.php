@@ -1,10 +1,6 @@
-	      	</div>
-	      	<div id="push"></div>
-      	</div>
-		<div id="footer">
-	    	<div class="container">
-	    		<p class="muted credit">&copy; AYMICG - 2013, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	      	</div>
-	    </div>
+		</div>
+	     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
 	</body>
 </html>

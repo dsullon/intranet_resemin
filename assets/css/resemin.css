@@ -1,0 +1,15 @@
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  padding: 5px;
+}
+
+.profile-img{
+    margin-top: -10px;
+    margin-right: 5px;
+    float: left;
+    background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+    width: 40px;
+    height: 40px;
+}
