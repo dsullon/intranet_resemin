@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Navegacion extends CI_Controller {
+class Menu extends CI_Controller {
 
 	public function __construct()
     {
         parent::__construct();
 		$this->load->model('usuario_model');
-		$this->load->model('navegacion_model');
+		$this->load->model('menu_model');
     }
 
 	public function index()
@@ -20,7 +20,7 @@ class Navegacion extends CI_Controller {
 		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
 		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
 		$this->load->view('plantilla/header');		
-		$this->load->view('navegacion/index',$datos);
+		$this->load->view('menu/index',$datos);
 		$this->load->view('plantilla/footer');
 	}
 
@@ -32,10 +32,10 @@ class Navegacion extends CI_Controller {
 		}
 
 		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
-		$datos['opciones'] = $this->navegacion_model->listarTodos();
+		$datos['opciones'] = $this->menu_model->listarTodos();
 		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
 		$this->load->view('plantilla/header');		
-		$this->load->view('navegacion/crear',$datos);
+		$this->load->view('menu/crear',$datos);
 		$this->load->view('plantilla/footer');
 	}
 
@@ -85,8 +85,8 @@ class Navegacion extends CI_Controller {
 	  			'url' => $this->input->post('url'),
 	  			'padre' => $this->input->post('principal')
 			);
-			$this->navegacion_model->crear($data);
-			redirect(base_url().'navegacion');
+			$this->menu_model->crear($data);
+			redirect(base_url().'menu');
 		}
 
   	}

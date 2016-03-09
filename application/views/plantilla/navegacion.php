@@ -14,16 +14,7 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="<?= base_url(); ?>">Inicio <span class="sr-only">(current)</span></a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nosotros<span class="caret"></span></a>
-				  	<ul class="dropdown-menu">
-					    <li><a href="#">La Empresa</a></li>
-					    <li><a href="#">Misión - Visión</a></li>
-					    <li role="separator" class="divider"></li>
-					    <li><a href="#">Estructura Organizacional</a></li>
-				  	</ul>
-				</li>
+				<? echo $this->menu_dinamico->display_children(0,1) ?>
 			</ul>
 
 		  	<ul class="nav navbar-nav pull-right">

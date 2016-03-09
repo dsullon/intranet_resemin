@@ -1,27 +1,34 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Navegacion_model extends CI_Model{
+class Menu_model extends CI_Model{
     
     function __construct(){
         parent::__construct();
     }
     
     function obtener($id){
-        $this->db->where('idNavegacion',$id);
-        $query = $this->db->get('navegacion');
+        $this->db->where('idMenu',$id);
+        $query = $this->db->get('menu');
         if($query->num_rows() > 0) return $query;
         else return false;
     }
 
     function listarTodos(){
-        $query = $this->db->get('navegacion');
+        $query = $this->db->get('menu');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
+
+    function listarHijos($id){
+        $this->db->where('idPadre',$id);
+        $query = $this->db->get('menu');
         if($query->num_rows() > 0) return $query;
         else return false;
     }
 
     function crear($data){
-        $this->db->insert('navegacion',array('nombre'=>$data['nombre'], 'url'=>$data['url'], 
+        $this->db->insert('menu',array('nombre'=>$data['nombre'], 'url'=>$data['url'], 
             'idPadre'=>$data['padre']));
     }
     

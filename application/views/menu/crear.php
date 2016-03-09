@@ -5,7 +5,7 @@
         </div>
         <div class="col-md-10">
             <h1>Navegación <small>Nuevo registro</small></h1>
-            <?=form_open("/navegacion/recibirdatos",['class' => 'form-horizontal', 'role' => 'form']);?>
+            <?=form_open("/menu/recibirdatos",['class' => 'form-horizontal', 'role' => 'form']);?>
             <div class="form-group">
                 <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
                 <div class="col-lg-4">
@@ -23,12 +23,12 @@
             <div class="form-group">
                 <label for="url" class="col-lg-2 control-label">Principal:</label>
                 <div class="col-lg-5">
-                    <select class="form-control" name="principal">
+                    <select class="form-control text-lowercase" name="principal">
                         <option value=0>Ninguno</option>
                         <?
                             foreach ($opciones->result() as $opcion) {
                                 ?>
-                                <option value="<?=$opcion->idNavegacion ?>"><?=$opcion->url ?></option>
+                                <option value="<?=$opcion->idMenu ?>"><?=$opcion->url ?></option>
                                 <?
                             }
                         ?>
