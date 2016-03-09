@@ -37,14 +37,14 @@
                         <li>
                             <a href="#">Editar perfil</a>
                         </li>
-                        <?php if($this->session->userdata('nivel')==1)
-                        {
+                        <? if($this->session->userdata('nivel')==1)
+                        	{
                         ?>
                         	<li>
 	                            <a href="<?= base_url() ?>admin/">Administrar</a>
 	                        </li>
-							<?php
-						}
+						<?
+							}
 						?>
                         <li role="separator" class="divider"></li>
                         <li>

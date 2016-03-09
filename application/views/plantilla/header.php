@@ -13,6 +13,7 @@
 
 	    <link href="<?= base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 	    <link href="<?= base_url() ?>assets/css/resemin.css" rel="stylesheet">
+	    <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="container">

@@ -24,12 +24,12 @@ Licensed under MIT
   <div class="profile-usermenu">
     <ul class="nav">
       <li>
-        <a href="#">
+        <a href="<?= base_url() ?>navegacion">
         <i class="glyphicon glyphicon-tasks"></i>
         Navegación </a>
       </li>
       <li>
-        <a href="#">
+        <a href="<?= base_url() ?>admin/pagina">
         <i class="glyphicon glyphicon-file"></i>
         Páginas </a>
       </li>

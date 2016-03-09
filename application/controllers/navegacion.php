@@ -1,12 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Navegacion extends CI_Controller {
 
 	public function __construct()
     {
         parent::__construct();
 		$this->load->model('usuario_model');
+		$this->load->model('navegacion_model');
     }
 
 	public function index()
@@ -19,11 +20,11 @@ class Admin extends CI_Controller {
 		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
 		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
 		$this->load->view('plantilla/header');		
-		$this->load->view('admin/index',$datos);
+		$this->load->view('navegacion/index',$datos);
 		$this->load->view('plantilla/footer');
 	}
 
-	public function pagina()
+	public function crear()
 	{
 		if($this->session->userdata('nivel') == FALSE && $this->session->userdata('nivel') !=1)
 		{
@@ -31,9 +32,10 @@ class Admin extends CI_Controller {
 		}
 
 		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
+		$datos['opciones'] = $this->navegacion_model->listarTodos();
 		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
 		$this->load->view('plantilla/header');		
-		$this->load->view('admin/pagina',$datos);
+		$this->load->view('navegacion/crear',$datos);
 		$this->load->view('plantilla/footer');
 	}
 
@@ -66,5 +68,26 @@ class Admin extends CI_Controller {
 
   	function recuperar(){
   		echo $this->input->post('detalle');
+  	}
+
+  	function recibirDatos(){
+  		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
+  		if($this->form_validation->run() == FALSE)
+		{
+
+		}
+		else
+		{
+			$data = array(
+	  			'nombre' => $this->input->post('nombre'),
+	  			'url' => $this->input->post('url'),
+	  			'padre' => $this->input->post('principal')
+			);
+			$this->navegacion_model->crear($data);
+			redirect(base_url().'navegacion');
+		}
+
   	}
 }
