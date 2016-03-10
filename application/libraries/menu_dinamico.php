@@ -19,33 +19,64 @@ class Menu_dinamico {
              if ($row->Count > 0) 
              {
                 echo "<li class='dropdown'>";
-                echo "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>" . $row->nombre . "<span class='caret'></span></a>";
-                echo "<ul class='dropdown-menu'>";
-                $this->display_children($row->idMenu, $level + 1);
-                echo "</ul>";
+                    echo "<a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>" . $row->nombre . "<span class='caret'></span></a>";
+                    echo "<ul class='dropdown-menu'>";
+                        $this->display_children($row->idMenu, $level + 1);
+                    echo "</ul>";
                 echo "</li>";
             } elseif ($row->Count==0) {
                 echo "<li><a href='pagina/" . $row->idMenu . "'>" . $row->nombre . "</a></li>";
             } else;
         }
+    }
 
-        echo "</ul>";
+    function construir_menu()
+    {
+        echo "<nav class='navbar navbar-default'>";
+            echo "<div class='container-fluid'>";
+                echo "<div class='navbar-header'>";
+                    echo "<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'>";
+                        echo "<span class='sr-only'>Toggle navigation</span>";
+                        echo "<span class='icon-bar'></span>";
+                        echo "<span class='icon-bar'></span>";
+                        echo "<span class='icon-bar'></span>";
+                    echo "</button>";
+                    echo "<a class='navbar-brand' href='".base_url()."'><img src='".base_url()."img/logo-resemin.png' alt='Resemin S.A.'></a>";
+                echo "</div>";
+
+                echo "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>";
+                    echo "<ul class='nav navbar-nav'>";
+                        $this->display_children(0,1);
+                    echo "</ul>";
+                    $this->ci->db->where('idUsuario',$this->ci->session->userdata('usuario'));
+                    $query = $this->ci->db->get('usuarios');
+                    $usuario = $query->result()[0];
+                    echo "<ul class='nav navbar-nav pull-right'>";
+                        echo "<li class='dropdown'>";
+                            echo "<a class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>";
+                                echo "<img src='".$usuario->urlAvatar."' class='img-circle profile-img'>";
+                                echo ($usuario->nombres.' '.$usuario->apellidoPaterno.' '.$usuario->apellidoMaterno);
+                                echo "<span class='caret'></span>";
+                            echo "</a>";
+                            echo "<ul class='dropdown-menu'>";
+                                echo "<li>";
+                                    echo "<a href='#'>Editar perfil</a>";
+                                echo "</li>";
+                                if($this->ci->session->userdata('nivel')==1)
+                                {
+                                    echo "<li>";
+                                        echo "<a href='".base_url()."admin/home'>Administrar datos</a>";
+                                    echo "</li>";
+                                }
+                                echo "<li role='separator' class='divider'></li>";
+                                echo "<li>";
+                                    echo "<a href='".base_url()."login/logout'>Cerrar sesión</a>";
+                                echo "</li>";
+                            echo "</ul>";
+                        echo "</li>";
+                    echo "</ul>";
+                echo "</div>";
+            echo "</div>";
+        echo "</nav>";
     }
 }
-
-
-
-
-/*<ul class="nav navbar-nav">
-                <li class="active"><a href="<?= base_url(); ?>">Inicio <span class="sr-only">(current)</span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nosotros<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">La Empresa</a></li>
-                        <li><a href="#">Misión - Visión</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Estructura Organizacional</a></li>
-                    </ul>
-                </li>
-            </ul>*/
-

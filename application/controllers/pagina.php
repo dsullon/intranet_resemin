@@ -17,10 +17,7 @@ class Pagina extends CI_Controller {
 			redirect(base_url().'login');
 		}
 
-		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario')); 
-
 		$this->load->view('plantilla/header');
-		$this->load->view('plantilla/navegacion',$data);
 		$this->load->view('pagina/index');
 		$this->load->view('plantilla/footer');
 	}

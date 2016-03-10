@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Menu extends CI_Controller {
+class Home extends CI_Controller {
 
 	public function __construct()
     {
         parent::__construct();
 		$this->load->model('usuario_model');
-		$this->load->model('menu_model');
     }
 
 	public function index()
@@ -20,11 +19,11 @@ class Menu extends CI_Controller {
 		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
 		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
 		$this->load->view('plantilla/header');		
-		$this->load->view('menu/index',$datos);
+		$this->load->view('admin/menu/index',$datos);
 		$this->load->view('plantilla/footer');
 	}
 
-	public function crear()
+	public function pagina()
 	{
 		if($this->session->userdata('nivel') == FALSE && $this->session->userdata('nivel') !=1)
 		{
@@ -32,10 +31,9 @@ class Menu extends CI_Controller {
 		}
 
 		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
-		$datos['opciones'] = $this->menu_model->listarTodos();
 		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
 		$this->load->view('plantilla/header');		
-		$this->load->view('menu/crear',$datos);
+		$this->load->view('admin/pagina',$datos);
 		$this->load->view('plantilla/footer');
 	}
 
@@ -68,26 +66,5 @@ class Menu extends CI_Controller {
 
   	function recuperar(){
   		echo $this->input->post('detalle');
-  	}
-
-  	function recibirDatos(){
-  		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
-  		if($this->form_validation->run() == FALSE)
-		{
-
-		}
-		else
-		{
-			$data = array(
-	  			'nombre' => $this->input->post('nombre'),
-	  			'url' => $this->input->post('url'),
-	  			'padre' => $this->input->post('principal')
-			);
-			$this->menu_model->crear($data);
-			redirect(base_url().'menu');
-		}
-
   	}
 }

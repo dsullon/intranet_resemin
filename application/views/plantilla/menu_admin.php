@@ -24,7 +24,7 @@ Licensed under MIT
   <div class="profile-usermenu">
     <ul class="nav">
       <li>
-        <a href="<?= base_url() ?>menu">
+        <a href="<?= base_url() ?>admin/home">
         <i class="glyphicon glyphicon-tasks"></i>
         Navegación </a>
       </li>
