@@ -1,11 +1,8 @@
 <div class="container">
 	<div class="row">
-        <div class="col-md-2">
-	  	    <?=$menu?>
-        </div>
         <div class="col-md-10">
             <h1>Navegación <small>Nuevo registro</small></h1>
-            <?=form_open("/menu/recibirdatos",['class' => 'form-horizontal', 'role' => 'form']);?>
+            <?=form_open("/admin/menu/recibirdatos",['class' => 'form-horizontal', 'role' => 'form']);?>
             <div class="form-group">
                 <label for="nombre" class="col-lg-2 control-label">Nombre:</label>
                 <div class="col-lg-4">

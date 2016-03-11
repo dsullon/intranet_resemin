@@ -17,11 +17,9 @@ class Menu extends CI_Controller {
 			redirect(base_url().'home');
 		}
 
-		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
-		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
-		$this->load->view('plantilla/header');		
-		$this->load->view('admin/menu/index',$datos);
-		$this->load->view('plantilla/footer');
+		$data['contenido'] = $this->load->view('admin/menu/index','',TRUE);
+		$data['titulo']	 = "Listado de opciones";
+		$this->load->view('admin/template',$data);
 	}
 
 	public function crear()
@@ -31,12 +29,10 @@ class Menu extends CI_Controller {
 			redirect(base_url().'home');
 		}
 
-		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));
 		$datos['opciones'] = $this->menu_model->listarTodos();
-		$datos['menu'] = $this->load->view('plantilla/menu_admin',$data,TRUE);
-		$this->load->view('plantilla/header');		
-		$this->load->view('menu/crear',$datos);
-		$this->load->view('plantilla/footer');
+		$data['titulo']	 = "Crear navegacion";
+		$data['contenido'] = $this->load->view('admin/menu/crear',$datos,TRUE);
+		$this->load->view('admin/template',$data);
 	}
 
   	public function editar() {
@@ -86,7 +82,7 @@ class Menu extends CI_Controller {
 	  			'padre' => $this->input->post('principal')
 			);
 			$this->menu_model->crear($data);
-			redirect(base_url().'menu');
+			redirect(base_url().'admin/menu');
 		}
 
   	}

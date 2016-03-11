@@ -20,7 +20,7 @@ class Login extends CI_Controller{
 		{
 			if($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token'))
 			{
-	            $this->form_validation->set_rules('username', 'nombre de usuario', 'required|trim|min_length[2]|max_length[150]|xss_clean');
+	            $this->form_validation->set_rules('usuario', 'nombre de usuario', 'required|trim|min_length[2]|max_length[150]|xss_clean');
 	            $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[3]|max_length[150]|xss_clean');
 	 
 	            //lanzamos mensajes de error si es que los hay
@@ -29,7 +29,7 @@ class Login extends CI_Controller{
 				{
 					$this->index();
 				}else{
-					$username = $this->input->post('username');
+					$username = $this->input->post('usuario');
 					$password = md5($this->input->post('password'));
 					$check_user = $this->usuario_model->iniciarSesion($username,$password);
 					if($check_user == TRUE)

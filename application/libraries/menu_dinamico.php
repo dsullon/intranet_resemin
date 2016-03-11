@@ -79,4 +79,42 @@ class Menu_dinamico {
             echo "</div>";
         echo "</nav>";
     }
+
+    function menu_admin()
+    {
+        $this->ci->db->where('idUsuario',$this->ci->session->userdata('usuario'));
+        $query = $this->ci->db->get('usuarios');
+        $usuario = $query->result()[0];
+
+        echo"<div class='profile-sidebar'>";
+            echo"<div class='profile-userpic'>";
+                echo"<img src='".$usuario->urlAvatar."' class='img-responsive' alt=''>";
+            echo"</div>";
+            echo"<div class='profile-usertitle'>";
+                echo"<div class='profile-usertitle-name'>";
+                    echo ($usuario->nombres.' '.$usuario->apellidoPaterno.' '.$usuario->apellidoMaterno);
+                echo"</div>";
+            echo"</div>";
+            echo"<div class='profile-usermenu'>";
+                echo"<ul class='nav'>";
+                    echo"<li>";
+                        echo"<a href='".base_url()."admin/menu'>";
+                        echo"<i class='glyphicon glyphicon-tasks'></i>Navegación</a>";
+                    echo"</li>";
+                    echo"<li>";
+                        echo"<a href='".base_url()."admin/pagina'>";
+                        echo"<i class='glyphicon glyphicon-file'></i>Páginas</a>";
+                    echo"</li>";
+                    echo"<li>";
+                        echo"<a href='#'>";
+                        echo"<i class='glyphicon glyphicon-bullhorn'></i>Publicaciones</a>";
+                    echo"</li>";
+                    echo"<li>";
+                        echo"<a href='".base_url()."'>";
+                        echo"<i class='glyphicon glyphicon-home'></i>Inicio</a>";
+                    echo"</li>";
+                echo"</ul>";
+            echo"</div>";
+        echo"</div>";
+    }
 }
