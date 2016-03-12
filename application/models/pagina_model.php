@@ -21,10 +21,12 @@ class Pagina_model extends CI_Model{
     }
 
     function crear($data){
-        $this->db->insert('menu',array('nombre'=>$data['nombre'], 'url'=>$data['url'], 
-            'idPadre'=>$data['padre']));
+        $this->db->insert('paginas',array('titulo'=>$data['titulo'], 'descripcion'=>$data['descripcion'], 
+            'palabrasClaves'=>$data['clave'], 'encabezado'=>$data['cabecera'], 'contenido'=>$data['detalle'],
+            'creadoPor'=>$this->session->userdata('usuario'), 'fechaCreacion'=>date('Y-m-d H:i:s'),
+            'ultimaModificacion'=>date('Y-m-d H:i:s'), 'modificadoPor'=>$this->session->userdata('usuario')));
     }
-    
+
     /*function actualizarDestino($id,$data){
         $datos = array('descripcion'=>$data['nombre']);
         $this->db->where('id_destino',$id);
