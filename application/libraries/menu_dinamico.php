@@ -48,32 +48,40 @@ class Menu_dinamico {
                     echo "<ul class='nav navbar-nav'>";
                         $this->display_children(0,1);
                     echo "</ul>";
-                    $this->ci->db->where('idUsuario',$this->ci->session->userdata('usuario'));
-                    $query = $this->ci->db->get('usuarios');
-                    $usuario = $query->result()[0];
                     echo "<ul class='nav navbar-nav pull-right'>";
-                        echo "<li class='dropdown'>";
-                            echo "<a class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>";
-                                echo "<img src='".$usuario->urlAvatar."' class='img-circle profile-img'>";
-                                echo ($usuario->nombres.' '.$usuario->apellidoPaterno.' '.$usuario->apellidoMaterno);
-                                echo "<span class='caret'></span>";
-                            echo "</a>";
-                            echo "<ul class='dropdown-menu'>";
-                                echo "<li>";
-                                    echo "<a href='#'>Editar perfil</a>";
-                                echo "</li>";
-                                if($this->ci->session->userdata('nivel')==1)
-                                {
+                        $this->ci->db->where('idUsuario',$this->ci->session->userdata('usuario'));
+                        $query = $this->ci->db->get('usuarios');
+                        if($query->result())
+                        {
+                            $usuario = $query->result()[0];                        
+                            echo "<li class='dropdown'>";
+                                echo "<a class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>";
+                                    echo "<img src='".$usuario->urlAvatar."' class='img-circle profile-img'>";
+                                    echo ($usuario->nombres.' '.$usuario->apellidoPaterno.' '.$usuario->apellidoMaterno);
+                                    echo "<span class='caret'></span>";
+                                echo "</a>";
+                                echo "<ul class='dropdown-menu'>";
                                     echo "<li>";
-                                        echo "<a href='".base_url()."admin/home'>Administrar datos</a>";
+                                        echo "<a href='#'>Editar perfil</a>";
                                     echo "</li>";
-                                }
-                                echo "<li role='separator' class='divider'></li>";
-                                echo "<li>";
-                                    echo "<a href='".base_url()."login/logout'>Cerrar sesión</a>";
-                                echo "</li>";
-                            echo "</ul>";
-                        echo "</li>";
+                                    if($this->ci->session->userdata('nivel')==1)
+                                    {
+                                        echo "<li>";
+                                            echo "<a href='".base_url()."admin/home'>Administrar datos</a>";
+                                        echo "</li>";
+                                    }
+                                    echo "<li role='separator' class='divider'></li>";
+                                    echo "<li>";
+                                        echo "<a href='".base_url()."login/logout'>Cerrar sesión</a>";
+                                    echo "</li>";
+                                echo "</ul>";
+                            echo "</li>";
+                        }
+                        else{
+                            echo "<li>";
+                                echo "<a href='".base_url()."login'>Iniciar sesión</a>";
+                            echo "</li>";
+                        }
                     echo "</ul>";
                 echo "</div>";
             echo "</div>";

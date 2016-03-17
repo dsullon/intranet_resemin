@@ -11,17 +11,8 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('usuario') == FALSE)
-		{
-			redirect(base_url().'login');
-		}
-
 		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario')); 
-
-		$this->load->view('plantilla/header');
-		$this->load->view('plantilla/navegacion',$data);
 		$this->load->view('home/index');
-		$this->load->view('plantilla/footer');
 	}
 
 

@@ -33,4 +33,4 @@
             );
         </script>
     </body>
-</head>
+</html>
