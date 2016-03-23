@@ -8,7 +8,7 @@
 		    <link rel="shortcut icon" href="<?= base_url() ?>img/favicon.ico" />
 		    <link href="<?= base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
 		    <link href="<?= base_url() ?>assets/css/resemin.css" rel="stylesheet">
-	 		<title>RESEMIN S.A.></title>
+	 		<title>RESEMIN S.A.</title>
 	</head>
 	<body>
 		<div class="container">
