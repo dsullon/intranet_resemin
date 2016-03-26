@@ -27,11 +27,13 @@ class Pagina_model extends CI_Model{
             'ultimaModificacion'=>date('Y-m-d H:i:s'), 'modificadoPor'=>$this->session->userdata('usuario')));
     }
 
-    /*function actualizarDestino($id,$data){
-        $datos = array('descripcion'=>$data['nombre']);
-        $this->db->where('id_destino',$id);
-        $query = $this->db->update('tbl_destino',$datos);
-    }*/
+    function editar($data){
+        $datos = array('titulo'=>$data['titulo'], 'descripcion'=>$data['descripcion'], 
+            'palabrasClaves'=>$data['clave'], 'encabezado'=>$data['cabecera'], 'contenido'=>$data['detalle'],
+            'ultimaModificacion'=>date('Y-m-d H:i:s'), 'modificadoPor'=>$this->session->userdata('usuario'));
+        $this->db->where('idPagina',$data['id']);
+        $query = $this->db->update('paginas',$datos);
+    }
     
     /*function eliminarDestino($id){
         //$query = "DELETE FROM tbl_destino WHERE id_destino=$id";

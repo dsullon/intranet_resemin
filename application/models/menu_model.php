@@ -32,11 +32,11 @@ class Menu_model extends CI_Model{
             'idPadre'=>$data['padre']));
     }
     
-    /*function actualizarDestino($id,$data){
-        $datos = array('descripcion'=>$data['nombre']);
-        $this->db->where('id_destino',$id);
-        $query = $this->db->update('tbl_destino',$datos);
-    }*/
+    function editar($data){
+        $datos = array('nombre'=>$data['nombre'], 'url'=>$data['url'], 'idPadre'=>$data['padre'], 'idPagina'=>$data['pagina']);
+        $this->db->where('idMenu',$data['id']);
+        $query = $this->db->update('menu',$datos);
+    }
     
     /*function eliminarDestino($id){
         //$query = "DELETE FROM tbl_destino WHERE id_destino=$id";

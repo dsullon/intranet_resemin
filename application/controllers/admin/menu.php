@@ -8,6 +8,7 @@ class Menu extends CI_Controller {
         parent::__construct();
 		$this->load->model('usuario_model');
 		$this->load->model('menu_model');
+        $this->load->model('pagina_model');
     }
 
 	public function index()
@@ -17,7 +18,8 @@ class Menu extends CI_Controller {
 			redirect(base_url().'home');
 		}
 
-		$data['contenido'] = $this->load->view('admin/menu/index','',TRUE);
+        $datos['listado'] = $this->menu_model->listarTodos();
+		$data['contenido'] = $this->load->view('admin/menu/index',$datos,TRUE);
 		$data['titulo']	 = "Listado de opciones";
 		$this->load->view('admin/template',$data);
 	}
@@ -32,47 +34,13 @@ class Menu extends CI_Controller {
 		$datos['opciones'] = $this->menu_model->listarTodos();
 		$data['titulo']	 = "Crear navegacion";
 		$data['contenido'] = $this->load->view('admin/menu/crear',$datos,TRUE);
-		$this->load->view('admin/template',$data);
-	}
-
-  	public function editar() {
-	    // $path = base_url().'js/ckfinder';
-	    $path = '../js/ckfinder';
-	    $width = '850px';
-	    $this->editor($path, $width);
-	    $this->form_validation->set_rules('description', 'Page Description', 'trim|required|xss_clean');
-	    if ($this->form_validation->run() == FALSE) {
-	      $this->load->view('home/editar_mision');
-	    }
-	    else {
-	      // do your stuff with post data.
-	      echo $this->input->post('description');
-	    }
-  	}
-
-	function editor($path,$width) {
-	    //Loading Library For Ckeditor
-	    $this->load->library('ckeditor');
-	    $this->load->library('ckFinder');
-	    //configure base path of ckeditor folder 
-	    $this->ckeditor->basePath = base_url().'js/ckeditor/';
-	    $this->ckeditor->config['language'] = 'es';
-	    $this->ckeditor-> config['width'] = $width;
-	    //configure ckfinder with ckeditor config 
-	    $this->ckfinder->SetupCKEditor($this->ckeditor,$path); 
-  	}
-
-  	function recuperar(){
-  		echo $this->input->post('detalle');
-  	}
-
-  	function recibirDatos(){
-  		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+        
+        $this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
   		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
   		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
   		if($this->form_validation->run() == FALSE)
 		{
-
+            $this->load->view('admin/template',$data);
 		}
 		else
 		{
@@ -84,6 +52,45 @@ class Menu extends CI_Controller {
 			$this->menu_model->crear($data);
 			redirect(base_url().'admin/menu');
 		}
+	}
 
+  	public function editar()
+      {
+	    if($this->session->userdata('nivel') == FALSE && $this->session->userdata('nivel') !=1)
+		{
+			redirect(base_url().'home');
+		}
+        
+        $id = $this->uri->segment(4);
+        $pagina = $this->menu_model->obtener($id);
+        if(!$pagina){
+            show_404();
+        }
+
+        $datos['pagina']= $pagina->result()[0];
+		$datos['opciones'] = $this->menu_model->listarTodos();
+        $datos['paginas'] = $this->pagina_model->listarTodos();
+		$data['titulo']	 = "Editar navegacion";
+		$data['contenido'] = $this->load->view('admin/menu/editar',$datos,TRUE);
+		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
+          
+  		if($this->form_validation->run() == FALSE)
+		{
+            $this->load->view('admin/template',$data);
+		}
+		else
+		{
+            $data = array(
+                'id' => $this->input->post('id'),
+                'nombre' => $this->input->post('nombre'),
+	  			'url' => $this->input->post('url'),
+	  			'padre' => $this->input->post('principal'),
+                'pagina' => $this->input->post('pagina')
+			);
+			$this->menu_model->editar($data);
+			redirect(base_url().'admin/menu');
+		}
   	}
 }

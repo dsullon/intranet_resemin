@@ -8,21 +8,33 @@
                     <tr>
                         <th>Titulo</th>
                         <th>Url</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Url</th>
-                    </tr>
-                </tfoot>
                 <tbody>
+            <?
+            if($listado)
+            {
+                foreach ($listado->result() as $row)
+                {
+                    ?>
                     <tr>
-                        <td>Donna Snider</td>
-                        <td>Customer Support</td>
+                        <td><?= $row->titulo?></td>
+                        <td><?= $row->encabezado?></td>
+                        <td><a href="<?= base_url() ?>admin/pagina/editar/<?= $row->idPagina?>">
+                                <img src="<?= base_url() ?>img/toolbar/table_edit.png" alt="Editar">
+                            </a> | 
+                            <a href="<?= base_url() ?>admin/pagina/eliminar/<?= $row->idPagina?>">
+                                <img src="<?= base_url() ?>img/toolbar/table_delete.png" alt="Eliminar">
+                            </a>
+                        </td>
                     </tr>
+                    <?
+                }
+            }
+            ?> 
                 </tbody>
-            </table>
+            </table> 
             <a href="<?= base_url() ?>admin/pagina/crear" class="btn btn-info btn-sm">Crear Nuevo</a>
         </div>
 	</div>

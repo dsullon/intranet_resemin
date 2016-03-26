@@ -9,11 +9,10 @@ class Menu_dinamico {
     
     function display_children($parent, $level) 
     {
-        $query = $this->ci->db->query("SELECT a.idMenu, a.nombre, a.url, a.publicado, IFNULL( Deriv1.Count, 0 ) AS Count FROM  `menu` a 
+        $query = $this->ci->db->query("SELECT a.idMenu, a.nombre, a.url, a.publicado, a.idPagina, IFNULL( Deriv1.Count, 0 ) AS Count FROM  `menu` a 
             LEFT OUTER JOIN (SELECT idPadre, COUNT( * ) AS Count FROM  `menu` GROUP BY idPadre) Deriv1 ON a.idMenu = Deriv1.idPadre 
             WHERE a.idPadre =" . $parent);
 
-        
         foreach ($query->result() as $row)
         {
              if ($row->Count > 0) 
@@ -25,15 +24,15 @@ class Menu_dinamico {
                     echo "</ul>";
                 echo "</li>";
             } elseif ($row->Count==0) {
-                echo "<li><a href='pagina/" . $row->idMenu . "'>" . $row->nombre . "</a></li>";
+                echo "<li><a href=".base_url()."pagina/view/" . $row->idPagina . ">" . $row->nombre . "</a></li>";
             } else;
         }
     }
 
     function construir_menu()
     {
-        echo "<nav class='navbar navbar-default'>";
-            echo "<div class='container-fluid'>";
+        echo "<nav class='navbar navbar-default navbar-fixed-top'>";
+            echo "<div class='container'>";
                 echo "<div class='navbar-header'>";
                     echo "<button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'>";
                         echo "<span class='sr-only'>Toggle navigation</span>";
@@ -46,6 +45,7 @@ class Menu_dinamico {
 
                 echo "<div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>";
                     echo "<ul class='nav navbar-nav'>";
+                        echo "<li><a href='".base_url()."'>Inicio</a></li>";
                         $this->display_children(0,1);
                     echo "</ul>";
                     echo "<ul class='nav navbar-nav pull-right'>";
@@ -106,12 +106,12 @@ class Menu_dinamico {
             echo"<div class='profile-usermenu'>";
                 echo"<ul class='nav'>";
                     echo"<li>";
-                        echo"<a href='".base_url()."admin/menu'>";
-                        echo"<i class='glyphicon glyphicon-tasks'></i>Navegación</a>";
-                    echo"</li>";
-                    echo"<li>";
                         echo"<a href='".base_url()."admin/pagina'>";
                         echo"<i class='glyphicon glyphicon-file'></i>Páginas</a>";
+                    echo"</li>";
+                    echo"<li>";
+                        echo"<a href='".base_url()."admin/menu'>";
+                        echo"<i class='glyphicon glyphicon-tasks'></i>Navegación</a>";
                     echo"</li>";
                     echo"<li>";
                         echo"<a href='#'>";
