@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Menu extends CI_Controller {
+class Post extends CI_Controller {
 
 	public function __construct()
     {
@@ -19,8 +19,8 @@ class Menu extends CI_Controller {
 		}
 
         $datos['listado'] = $this->menu_model->listarTodos();
-		$data['contenido'] = $this->load->view('admin/menu/index',$datos,TRUE);
-		$data['titulo']	 = "Listado de opciones";
+		$data['contenido'] = $this->load->view('admin/post/index',$datos,TRUE);
+		$data['titulo']	 = "Listado de publicaciones";
 		$this->load->view('admin/template',$data);
 	}
 
@@ -32,11 +32,11 @@ class Menu extends CI_Controller {
 		}
 
 		$datos['opciones'] = $this->menu_model->listarTodos();
-         $datos['paginas'] = $this->pagina_model->listarTodos();
 		$data['titulo']	 = "Crear navegacion";
 		$data['contenido'] = $this->load->view('admin/menu/crear',$datos,TRUE);
         
         $this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
   		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
   		if($this->form_validation->run() == FALSE)
 		{
@@ -73,6 +73,7 @@ class Menu extends CI_Controller {
 		$data['titulo']	 = "Editar navegacion";
 		$data['contenido'] = $this->load->view('admin/menu/editar',$datos,TRUE);
 		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
   		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
           
   		if($this->form_validation->run() == FALSE)

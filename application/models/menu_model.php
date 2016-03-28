@@ -28,12 +28,11 @@ class Menu_model extends CI_Model{
     }
 
     function crear($data){
-        $this->db->insert('menu',array('nombre'=>$data['nombre'], 'url'=>$data['url'], 
-            'idPadre'=>$data['padre']));
+        $this->db->insert('menu',array('nombre'=>$data['nombre'], 'idPadre'=>$data['padre'], 'idPagina'=>$data['pagina']));
     }
     
     function editar($data){
-        $datos = array('nombre'=>$data['nombre'], 'url'=>$data['url'], 'idPadre'=>$data['padre'], 'idPagina'=>$data['pagina']);
+        $datos = array('nombre'=>$data['nombre'], 'idPadre'=>$data['padre'], 'idPagina'=>$data['pagina']);
         $this->db->where('idMenu',$data['id']);
         $query = $this->db->update('menu',$datos);
     }

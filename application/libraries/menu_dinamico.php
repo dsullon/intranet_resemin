@@ -9,9 +9,9 @@ class Menu_dinamico {
     
     function display_children($parent, $level) 
     {
-        $query = $this->ci->db->query("SELECT a.idMenu, a.nombre, a.url, a.publicado, a.idPagina, IFNULL( Deriv1.Count, 0 ) AS Count FROM  `menu` a 
-            LEFT OUTER JOIN (SELECT idPadre, COUNT( * ) AS Count FROM  `menu` GROUP BY idPadre) Deriv1 ON a.idMenu = Deriv1.idPadre 
-            WHERE a.idPadre =" . $parent);
+        $query = $this->ci->db->query("SELECT a.idMenu, a.nombre, IFNULL(LCASE(b.titulo),'') AS titulo, a.publicado, a.idPagina, IFNULL(Deriv1.Count, 0) AS Count FROM  menu a 
+            LEFT JOIN paginas  b ON a.idPagina = b.idPagina LEFT OUTER JOIN (
+                SELECT idPadre, COUNT( * ) AS Count FROM  menu GROUP BY idPadre) Deriv1 ON a.idMenu = Deriv1.idPadre WHERE a.idPadre =" . $parent);
 
         foreach ($query->result() as $row)
         {
@@ -24,7 +24,7 @@ class Menu_dinamico {
                     echo "</ul>";
                 echo "</li>";
             } elseif ($row->Count==0) {
-                echo "<li><a href=".base_url()."pagina/view/" . $row->idPagina . ">" . $row->nombre . "</a></li>";
+                echo "<li><a href=".base_url()."pagina/view/" . $row->titulo . ">" . $row->nombre . "</a></li>";
             } else;
         }
     }
@@ -114,7 +114,7 @@ class Menu_dinamico {
                         echo"<i class='glyphicon glyphicon-tasks'></i>Navegación</a>";
                     echo"</li>";
                     echo"<li>";
-                        echo"<a href='#'>";
+                        echo"<a href='".base_url()."admin/post'>";
                         echo"<i class='glyphicon glyphicon-bullhorn'></i>Publicaciones</a>";
                     echo"</li>";
                     echo"<li>";

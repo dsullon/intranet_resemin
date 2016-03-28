@@ -13,6 +13,13 @@ class Pagina_model extends CI_Model{
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+    
+    function obtener_por_titulo($titulo){
+        $this->db->where('titulo',$titulo);
+        $query = $this->db->get('paginas');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
 
     function listarTodos(){
         $query = $this->db->get('paginas');
@@ -21,15 +28,13 @@ class Pagina_model extends CI_Model{
     }
 
     function crear($data){
-        $this->db->insert('paginas',array('titulo'=>$data['titulo'], 'descripcion'=>$data['descripcion'], 
-            'palabrasClaves'=>$data['clave'], 'encabezado'=>$data['cabecera'], 'contenido'=>$data['detalle'],
+        $this->db->insert('paginas',array('titulo'=>$data['titulo'], 'contenido'=>$data['detalle'],
             'creadoPor'=>$this->session->userdata('usuario'), 'fechaCreacion'=>date('Y-m-d H:i:s'),
             'ultimaModificacion'=>date('Y-m-d H:i:s'), 'modificadoPor'=>$this->session->userdata('usuario')));
     }
 
     function editar($data){
-        $datos = array('titulo'=>$data['titulo'], 'descripcion'=>$data['descripcion'], 
-            'palabrasClaves'=>$data['clave'], 'encabezado'=>$data['cabecera'], 'contenido'=>$data['detalle'],
+        $datos = array('titulo'=>$data['titulo'], 'contenido'=>$data['detalle'],
             'ultimaModificacion'=>date('Y-m-d H:i:s'), 'modificadoPor'=>$this->session->userdata('usuario'));
         $this->db->where('idPagina',$data['id']);
         $query = $this->db->update('paginas',$datos);

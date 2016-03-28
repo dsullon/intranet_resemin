@@ -11,8 +11,8 @@ class Pagina extends CI_Controller {
 
 	public function view()
     {
-        $id = $this->uri->segment(3);
-        $pagina = $this->pagina_model->obtener($id);
+        $titulo = $this->uri->segment(3);
+        $pagina = $this->pagina_model->obtener_por_titulo($titulo);
         if(!$pagina)
         {
             show_404();
@@ -20,9 +20,6 @@ class Pagina extends CI_Controller {
         $pagina = $pagina->result()[0];
         $data['cms_pages'] = $this->pagina_model->listarTodos();
         $data['titulo'] = $pagina->titulo;
-        $data['descripcion'] = $pagina->descripcion;
-        $data['palabrasClaves'] = $pagina->palabrasClaves;
-        $data['encabezado'] = $pagina->encabezado;
         $data['contenido'] = $pagina->contenido;
         $this->load->view('pagina/plantilla', $data);
     }

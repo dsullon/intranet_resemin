@@ -1,11 +1,12 @@
 <div class="container">
 	<div class="row">
         <div class="col-md-10">
-            <h1>Listado de páginas</h1>         
-        	<table id="example" class="display" cellspacing="0" width="100%">
+            <h1>Publicaciones</h1>
+            <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Titulo</th>
+                        <th>Url</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -17,11 +18,12 @@
                 {
                     ?>
                     <tr>
-                        <td><?= $row->titulo?></td>
-                        <td><a href="<?= base_url() ?>admin/pagina/editar/<?= $row->idPagina?>">
+                        <td><?= $row->nombre?></td>
+                        <td><?= $row->url?></td>
+                        <td><a href="<?= base_url() ?>admin/menu/editar/<?= $row->idMenu?>">
                                 <img src="<?= base_url() ?>img/toolbar/table_edit.png" alt="Editar">
                             </a> | 
-                            <a href="<?= base_url() ?>admin/pagina/eliminar/<?= $row->idPagina?>">
+                            <a href="<?= base_url() ?>admin/menu/eliminar/<?= $row->idMenu?>">
                                 <img src="<?= base_url() ?>img/toolbar/table_delete.png" alt="Eliminar">
                             </a>
                         </td>
@@ -31,8 +33,8 @@
             }
             ?> 
                 </tbody>
-            </table> 
-            <a href="<?= base_url() ?>admin/pagina/crear" class="btn btn-info btn-sm">Crear Nuevo</a>
+            </table>         
+            <a href="<?= base_url() ?>admin/menu/crear" class="btn btn-info btn-sm">Crear Nuevo</a>
         </div>
 	</div>
 </div>

@@ -2,12 +2,10 @@
 	<div class="row">
         <div class="col-md-10">
             <h1>Navegación</h1>
-            <p><a href="<?= base_url() ?>admin/menu/crear" class="btn btn-info btn-sm">Crear Nuevo</a></p>
             <table id="example" class="display" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Titulo</th>
-                        <th>Url</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -20,7 +18,6 @@
                     ?>
                     <tr>
                         <td><?= $row->nombre?></td>
-                        <td><?= $row->url?></td>
                         <td><a href="<?= base_url() ?>admin/menu/editar/<?= $row->idMenu?>">
                                 <img src="<?= base_url() ?>img/toolbar/table_edit.png" alt="Editar">
                             </a> | 

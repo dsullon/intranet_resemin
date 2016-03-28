@@ -35,9 +35,6 @@ class Pagina extends CI_Controller {
 		$data['contenido'] = $this->load->view('admin/pagina/crear','',TRUE);
 
 		$this->form_validation->set_rules('titulo', 'titulo', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('descripcion', 'descripcion', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('clave', 'clave', 'required|xss_clean');
-  		$this->form_validation->set_rules('cabecera', 'cabecera', 'required|trim|min_length[5]|max_length[150]|xss_clean');
 
   		if ($this->form_validation->run() == FALSE)
   		{
@@ -47,9 +44,6 @@ class Pagina extends CI_Controller {
 	    {
 	    	$data = array(
 	  			'titulo' => $this->input->post('titulo'),
-	  			'descripcion' => $this->input->post('descripcion'),
-	  			'clave' => $this->input->post('clave'),
-	  			'cabecera' => $this->input->post('cabecera'),
 	  			'detalle' => $this->input->post('detalle')
 			);
 			$this->pagina_model->crear($data);
@@ -79,10 +73,6 @@ class Pagina extends CI_Controller {
 		$data['contenido'] = $this->load->view('admin/pagina/editar',$datos,TRUE);
 
 		$this->form_validation->set_rules('titulo', 'titulo', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('descripcion', 'descripcion', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('clave', 'clave', 'required|xss_clean');
-  		$this->form_validation->set_rules('cabecera', 'cabecera', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		/*$this->form_validation->set_rules('detalle', 'detalle', 'required|trim|min_length[5]|max_length[150]|xss_clean');*/
           
   		if ($this->form_validation->run() == FALSE)
   		{
@@ -93,9 +83,6 @@ class Pagina extends CI_Controller {
 	    	$data = array(
                 'id' => $this->input->post('id'),
 	  			'titulo' => $this->input->post('titulo'),
-	  			'descripcion' => $this->input->post('descripcion'),
-	  			'clave' => $this->input->post('clave'),
-	  			'cabecera' => $this->input->post('cabecera'),
 	  			'detalle' => $this->input->post('detalle')
 			);
 			$this->pagina_model->editar($data);
@@ -112,18 +99,5 @@ class Pagina extends CI_Controller {
 	    $this->ckeditor-> config['width'] = $width;
 	    //configure ckfinder with ckeditor config 
 	    $this->ckfinder->SetupCKEditor($this->ckeditor,$path); 
-  	}
-
-  	function crearnuevo(){
-  		
-
-  		if ($this->form_validation->run() == FALSE)
-  		{
-  			$this->crear();
-	    }
-	    else {
-	      // do your stuff with post data.
-	      echo $this->input->post('description');
-	    }
   	}
 }

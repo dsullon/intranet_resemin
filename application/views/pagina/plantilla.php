@@ -4,8 +4,6 @@
 		<meta charset="utf-8">
 		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		    <meta name="viewport" content="width=device-width, initial-scale=1">
-		    <meta name="description" content="<?= $descripcion ?>">
-		    <meta name="keywords" content="<?= $palabrasClaves ?>">
 		    <meta name="author" content="Resemin S.A.">
 		    <link rel="shortcut icon" href="<?= base_url() ?>img/favicon.ico" />
 		    <link href="<?= base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
@@ -22,8 +20,8 @@
                     
                 </div>
                 <div class="col-md-6">
-                    <h3 class="page-header"><?= $encabezado?></h3>
-                    <div class="col-md-6"><?= $contenido?></div>
+                    <h3 class="page-header"><?= $titulo?></h3>
+                    <div><?= $contenido?></div>
                 </div>
                 <div class="col-md-3">
                     

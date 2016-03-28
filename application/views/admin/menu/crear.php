@@ -11,13 +11,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="url" class="col-lg-2 control-label">Dirección:</label>
-                <div class="col-lg-5">
-                  <input type="text" class="form-control" name="url"
-                         placeholder="Dirección url (ejem.: empresa/historia)">
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="url" class="col-lg-2 control-label">Principal:</label>
                 <div class="col-lg-5">
                     <select class="form-control text-lowercase" name="principal">
@@ -25,7 +18,23 @@
                         <?
                             foreach ($opciones->result() as $opcion) {
                                 ?>
-                                <option value="<?=$opcion->idMenu ?>"><?=$opcion->url ?></option>
+                                <option value="<?=$opcion->idMenu ?>"><?=$opcion->nombre ?></option>
+                                <?
+                            }
+                        ?>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="pagina" class="col-lg-2 control-label">Página:</label>
+                <div class="col-lg-5">
+                    <select class="form-control text-uppercase" name="pagina">
+                        <option value=0>--SELECCIONE--</option>
+                        <?
+                            foreach ($paginas->result() as $p) {
+                                ?>
+                                <option value="<?=$p->idPagina?>"><?=$p->titulo ?></option>
                                 <?
                             }
                         ?>
@@ -36,7 +45,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-lg-8 col-sm-8 text-left">
                     <input id="btn_add" name="btn_add" type="submit" class="btn btn-primary" value="Grabar" />
-                    <input id="btn_cancel" name="btn_cancel" type="reset" class="btn btn-danger" value="Cancelar" />
+                    <a href="<?=base_url()?>admin/menu" class="btn btn-danger">Cancelar</a>
                 </div>
             </div>
             <?=form_close(); ?>
