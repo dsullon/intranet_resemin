@@ -34,7 +34,7 @@
             ?> 
                 </tbody>
             </table>         
-            <a href="<?= base_url() ?>admin/menu/crear" class="btn btn-info btn-sm">Crear Nuevo</a>
+            <a href="<?= base_url() ?>admin/post/crear" class="btn btn-info btn-sm">Crear Nuevo</a>
         </div>
 	</div>
 </div>
