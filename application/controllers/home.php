@@ -11,7 +11,8 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario')); 
-		$this->load->view('home/index');
+		/*$data['usuario'] = $this->usuario_model->obtenerUsuario($this->session->userdata('usuario'));*/ 
+        $data['carousel'] = true;
+		$this->load->view('plantilla/master_view',$data);
 	}
 }

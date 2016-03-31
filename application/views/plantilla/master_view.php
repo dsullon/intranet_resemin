@@ -15,11 +15,16 @@
             <? echo $this->menu_dinamico->construir_menu() ?>
         </div>
 		<div class="container">
+            <? if($carousel)
+                { 
+            ?>
+                    <div class="row">
+                        <? $this->load->view('plantilla/carousel'); ?> 
+                    </div>
+            <? }?>
             <div class="row">
                 <div class="col-md-3">
-                    <?php
-                        $this->load->view('plantilla/navegacion');
-                    ?>
+                    
                 </div>
                 <div class="col-md-6">
 
