@@ -43,3 +43,4 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
+    <!--http://avenir.ro/codeigniter-tutorials/creating-using-page-templates-codeigniter/-->
