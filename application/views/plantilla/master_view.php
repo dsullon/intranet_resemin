@@ -11,26 +11,21 @@
 	 		<title>RESEMIN S.A.</title>
 	</head>
 	<body>
-        <div>
-            <? echo $this->menu_dinamico->construir_menu() ?>
-        </div>
+        <? echo $this->menu_dinamico->construir_menu() ?>
 		<div class="container">
-            <? if($carousel)
-                { 
-            ?>
-                    <div class="row">
-                        <? $this->load->view('plantilla/carousel'); ?> 
-                    </div>
-            <? }?>
             <div class="row">
                 <div class="col-md-3">
-                    
+                    ffflf
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
+                    <? if($carousel)
+                        { 
+                    ?>
+                            <div class="row">
+                                <? $this->load->view('plantilla/carousel'); ?> 
+                            </div>
+                    <? }?>
 
-                </div>
-                <div class="col-md-3">
-                    
                 </div>
             </div>
         </div> <!-- Wrapper Close -->
