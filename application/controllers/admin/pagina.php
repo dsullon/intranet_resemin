@@ -28,7 +28,7 @@ class Pagina extends CI_Controller {
 		{
 			redirect(base_url().'home');
 		}
-	    $path = '../../js/ckfinder';
+	    $path = '../../../js/ckfinder';
 	    $width = '100%';
 	    $this->editor($path, $width);
 		$data['titulo']	 = "Crear página";

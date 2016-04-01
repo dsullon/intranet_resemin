@@ -26,15 +26,23 @@ class Post_model extends CI_Model{
         if($query->num_rows() > 0) return $query;
         else return false;
     }
+    
+    function listarUltimos(){
+        $this->db->where('publicado','si');
+        $query = $this->db->get('publicaciones');
+        if($query->num_rows() > 0) return $query;
+        else return false;
+    }
 
     function crear($data){
         $this->db->insert('publicaciones',array('titulo'=>$data['titulo'], 'contenido'=>$data['detalle'],
-            'urlImagen'=>$data['url'], 'creadoPor'=>$this->session->userdata('usuario'), 'fechaCreacion'=>date('Y-m-d H:i:s'),
-            'ultimaModificacion'=>date('Y-m-d H:i:s'), 'modificadoPor'=>$this->session->userdata('usuario'), 'publicado'=>$data['publicado']));
+            'idCategoria'=>$data['categoria'], 'imagen'=>$data['imagen'], 'creadoPor'=>$this->session->userdata('usuario'), 
+            'fechaCreacion'=>date('Y-m-d H:i:s'), 'ultimaModificacion'=>date('Y-m-d H:i:s'), 
+            'modificadoPor'=>$this->session->userdata('usuario'), 'publicado'=>$data['publicado']));
     }
 
     function editar($data){
-        $datos = array('titulo'=>$data['titulo'], 'contenido'=>$data['detalle'],
+        $datos = array('titulo'=>$data['titulo'], 'contenido'=>$data['detalle'], 'idCategoria'=>$data['categoria'], 
             'ultimaModificacion'=>date('Y-m-d H:i:s'), 'modificadoPor'=>$this->session->userdata('usuario'));
         $this->db->where('idPublicacion',$data['id']);
         $query = $this->db->update('publicaciones',$datos);

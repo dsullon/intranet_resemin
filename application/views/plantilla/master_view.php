@@ -19,13 +19,14 @@
                 </div>
                 <div class="col-md-9">
                     <? if($carousel)
-                        { 
-                    ?>
-                            <div class="row">
-                                <? $this->load->view('plantilla/carousel'); ?> 
-                            </div>
-                    <? }?>
-
+                    {
+                        echo $this->carousel->crearCarousel();
+                    }?>    
+                    <? if(isset($vista))
+                    {
+                        echo $vista;
+                    }
+                    ?>                
                 </div>
             </div>
         </div> <!-- Wrapper Close -->

@@ -30,7 +30,7 @@ class Post extends CI_Controller {
 		{
 			redirect(base_url().'home');
 		}
-        $config = array(
+        /*$config = array(
             'upload_path' => "./uploads/",
             'allowed_types' => "gif|jpg|png|jpeg|pdf",
             'overwrite' => TRUE,
@@ -38,7 +38,7 @@ class Post extends CI_Controller {
             'max_height' => "768",
             'max_width' => "1024"
             );
-        $this->load->library('upload', $config);
+        $this->load->library('upload', $config);*/
         
         $path = '../../js/ckfinder';
 	    $width = '100%';
@@ -48,9 +48,8 @@ class Post extends CI_Controller {
 		$data['titulo']	 = "Crear publicación";
 		$data['contenido'] = $this->load->view('admin/post/crear',$datos,TRUE);
         
-        $this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
+        $this->form_validation->set_rules('titulo', 'titulo', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('categoria', 'categoría', 'required|xss_clean');
   		if($this->form_validation->run() == FALSE)
 		{
             $this->load->view('admin/template',$data);
@@ -58,11 +57,12 @@ class Post extends CI_Controller {
 		else
 		{
 			$data = array(
-	  			'nombre' => $this->input->post('nombre'),
-	  			'url' => $this->input->post('url'),
-	  			'padre' => $this->input->post('principal')
+	  			'titulo' => $this->input->post('titulo'),
+	  			'categoria' => $this->input->post('categoria'),
+                'imagen' => $this->input->post('imagen'),
+                'detalle' => $this->input->post('detalle')
 			);
-			$this->menu_model->crear($data);
+			$this->post_model->crear($data);
 			redirect(base_url().'admin/post');
 		}
 	}
@@ -75,19 +75,22 @@ class Post extends CI_Controller {
 		}
         
         $id = $this->uri->segment(4);
-        $pagina = $this->menu_model->obtener($id);
+        $pagina = $this->post_model->obtener($id);
         if(!$pagina){
             show_404();
         }
+        
+        $path = '../../../js/ckfinder';
+	    $width = '100%';
+	    $this->editor($path, $width);
 
         $datos['pagina']= $pagina->result()[0];
-		$datos['opciones'] = $this->menu_model->listarTodos();
-        $datos['paginas'] = $this->pagina_model->listarTodos();
-		$data['titulo']	 = "Editar navegacion";
-		$data['contenido'] = $this->load->view('admin/menu/editar',$datos,TRUE);
-		$this->form_validation->set_rules('nombre', 'nombre', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('url', 'url', 'required|trim|min_length[5]|max_length[150]|xss_clean');
-  		$this->form_validation->set_rules('principal', 'opción principal', 'required|xss_clean');
+		$datos['categorias'] = $this->categoria_model->listarTodos();
+		$data['titulo']	 = "Editar publicación";
+		$data['contenido'] = $this->load->view('admin/post/editar',$datos,TRUE);
+        
+		$this->form_validation->set_rules('titulo', 'titulo', 'required|trim|min_length[5]|max_length[150]|xss_clean');
+  		$this->form_validation->set_rules('categoria', 'categoría', 'required|xss_clean');
           
   		if($this->form_validation->run() == FALSE)
 		{
@@ -97,12 +100,12 @@ class Post extends CI_Controller {
 		{
             $data = array(
                 'id' => $this->input->post('id'),
-                'nombre' => $this->input->post('nombre'),
-	  			'url' => $this->input->post('url'),
-	  			'padre' => $this->input->post('principal'),
-                'pagina' => $this->input->post('pagina')
+	  			'titulo' => $this->input->post('titulo'),
+	  			'categoria' => $this->input->post('categoria'),
+                'imagen' => $this->input->post('imagen'),
+                'detalle' => $this->input->post('detalle')
 			);
-			$this->menu_model->editar($data);
+			$this->post_model->editar($data);
 			redirect(base_url().'admin/post');
 		}
   	}

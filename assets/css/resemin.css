@@ -68,6 +68,11 @@ body {
     margin: 0 auto;
     height: 400px;
     max-height: 400px;
+    width: 100%;
+}
+
+.carousel-caption p .btn-link{
+    color: red;
 }
 
 /*.carousel .item img{

@@ -6,7 +6,6 @@
                 <thead>
                     <tr>
                         <th>Titulo</th>
-                        <th>Url</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -18,12 +17,11 @@
                 {
                     ?>
                     <tr>
-                        <td><?= $row->nombre?></td>
-                        <td><?= $row->url?></td>
-                        <td><a href="<?= base_url() ?>admin/menu/editar/<?= $row->idMenu?>">
+                        <td><?= $row->titulo?></td>
+                        <td><a href="<?= base_url() ?>admin/post/editar/<?= $row->idPublicacion?>">
                                 <img src="<?= base_url() ?>img/toolbar/table_edit.png" alt="Editar">
                             </a> | 
-                            <a href="<?= base_url() ?>admin/menu/eliminar/<?= $row->idMenu?>">
+                            <a href="<?= base_url() ?>admin/post/eliminar/<?= $row->idPublicacion?>">
                                 <img src="<?= base_url() ?>img/toolbar/table_delete.png" alt="Eliminar">
                             </a>
                         </td>

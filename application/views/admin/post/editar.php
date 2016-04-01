@@ -1,16 +1,16 @@
 <div class="container">
 	<div class="row">
         <div class="col-md-10">
-            <h1>Página <small>Nuevo registro</small></h1>
-            <?=form_open_multipart("/admin/post/crear",['class' => 'form-horizontal', 'role' => 'form']);?>
+            <h1>Página <small>Editar registro</small></h1>
+            <?=form_open_multipart("/admin/post/editar/".$pagina->idPublicacion,['class' => 'form-horizontal', 'role' => 'form']);?>
+            <input type="hidden" name="id" value="<?=set_value('titulo',$pagina->idPublicacion) ?>">
             <div class="form-group">
                 <label for="titulo" class="col-lg-1 control-label">Titulo:</label>
                 <div class="col-lg-4">
                   <input type="text" class="form-control" name="titulo"
-                         placeholder="Título de la publicación" value="<?=set_value('titulo') ?>">
+                         placeholder="Título de la publicación" value="<?=set_value('titulo',$pagina->titulo) ?>">
                 </div>
             </div>
-            
             <div class="form-group">
                 <label for="categoria" class="col-lg-1 control-label">Categoría:</label>
                 <div class="col-lg-4">
@@ -19,7 +19,7 @@
                         <?
                             foreach ($categorias->result() as $c) {
                                 ?>
-                                <option value="<?=$c->idCategoria?>"><?=$c->nombre ?></option>
+                                <option value="<?=$c->idCategoria?>" <?=$pagina->idCategoria == $c->idCategoria ? "selected" : "" ?>><?=$c->nombre ?></option>
                                 <?
                             }
                         ?>
@@ -36,7 +36,7 @@
             
             <div class="form-group">
                 <div class="col-lg-12">
-                  <?php echo $this->ckeditor->editor('detalle',html_entity_decode(set_value('detalle')));?> 
+                  <?php echo $this->ckeditor->editor('detalle',html_entity_decode(set_value('detalle', $pagina->contenido)));?> 
                 </div>
             </div>                    
 
