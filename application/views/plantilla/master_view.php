@@ -30,6 +30,11 @@
                 </div>
             </div>
         </div> <!-- Wrapper Close -->
+        <div class="footer">
+            <div class="container">
+                <p class="text-muted">Place sticky footer content here.</p>
+            </div>
+        </div>
         <script src="<?= base_url() ?>assets/js/jquery-2.2.2.min.js"></script>
         <script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
     </body>
