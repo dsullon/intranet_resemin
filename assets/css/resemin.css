@@ -6,7 +6,7 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 220px;
+  margin-bottom: 60px;
   background-color: #FBF5EF;
 }
 .footer {
@@ -14,7 +14,7 @@ body {
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 200px;
+  height: 60px;
   background-color: rgba(91,155,209,1);
 }
 
@@ -23,6 +23,17 @@ body > .container {
 }
 
 /* FIN FOOTER */
+
+/* WIDGET*/
+.widget{
+    background-color: white;
+    margin: 2px 5px;
+    padding: 5px;
+}
+.widget .page-header{
+    margin: 10px 0px;
+}
+/* FIN WIDGET*/
 
 /* CSS CAROUSEL */
 .carousel{

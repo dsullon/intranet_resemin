@@ -15,7 +15,30 @@
 		<div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    ffflf
+                    <div class="row">
+                        <div class="widget">
+                            <h4 class="page-header">Aplicaciones</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="widget">
+                            <h4 class="page-header">Herramientas de comunicación</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="widget">
+                            <h4 class="page-header">Boletines</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="widget">
+                            <h4 class="page-header">Próximos eventos</h4>
+                            <div>
+                                <a href="">Evento</a>
+                                2016-3-25
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-9">
                     <? if($carousel)
