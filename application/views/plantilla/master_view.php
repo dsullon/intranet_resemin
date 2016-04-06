@@ -16,22 +16,22 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="row">
-                        <div class="widget">
+                        <div class="widget well">
                             <h4 class="page-header">Aplicaciones</h4>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="widget">
+                        <div class="widget well">
                             <h4 class="page-header">Herramientas de comunicación</h4>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="widget">
-                            <h4 class="page-header">Boletines</h4>
+                        <div class="widget well">
+                            <h4 class="page-header">Categorias</h4>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="widget">
+                        <div class="widget well">
                             <h4 class="page-header">Próximos eventos</h4>
                             <div>
                                 <a href="">Evento</a>

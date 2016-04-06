@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','form_validation','menu_dinamico','carousel','ckeditor','ckFinder');
+$autoload['libraries'] = array('database','session','form_validation','user_agent','menu_dinamico','carousel','widget','ckeditor','ckFinder');
 
 /*
 | -------------------------------------------------------------------

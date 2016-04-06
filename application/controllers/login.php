@@ -18,6 +18,9 @@ class Login extends CI_Controller{
 
 	public function new_user()
 		{
+            echo $this->session->userdata('token');
+            echo '<br>';
+            echo $this->input->post('token');
 			if($this->input->post('token') && $this->input->post('token') == $this->session->userdata('token'))
 			{
 	            $this->form_validation->set_rules('usuario', 'nombre de usuario', 'required|trim|min_length[2]|max_length[150]|xss_clean');
@@ -27,7 +30,7 @@ class Login extends CI_Controller{
 	            
 				if($this->form_validation->run() == FALSE)
 				{
-					$this->index();
+					redirect($this->agent->referrer());
 				}else{
 					$username = $this->input->post('usuario');
 					$password = md5($this->input->post('password'));
@@ -39,11 +42,11 @@ class Login extends CI_Controller{
 			                'nivel'		=>		$check_user->idNivel,
 	            		);		
 						$this->session->set_userdata($data);
-						redirect(base_url());
+						redirect($this->agent->referrer());
 					}
 				}
 			}else{
-				redirect(base_url().'login');
+				redirect($this->agent->referrer());
 			}
 		}
 	
@@ -57,6 +60,6 @@ class Login extends CI_Controller{
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect(base_url().'home');
+		redirect($this->agent->referrer());
 	}
 }

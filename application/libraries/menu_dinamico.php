@@ -78,9 +78,34 @@ class Menu_dinamico {
                             echo "</li>";
                         }
                         else{
-                            echo "<li>";
-                                echo "<a href='".base_url()."login'>Iniciar sesión</a>";
-                            echo "</li>";
+                            $token = $this->token();
+                            echo '<ul class="nav navbar-nav navbar-right">';
+                                echo '<li class="dropdown">';
+                                    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>';
+                                    echo '<ul id="login-dp" class="dropdown-menu">';
+                                        echo '<li>';
+                                            echo '<div class="row">';
+                                                echo '<div class="col-md-12">';
+                                                    echo '<form class="form" role="form" method="post" action="'.base_url().'login/new_user" accept-charset="UTF-8" id="login-nav">';
+                                                        echo '<input type="hidden" name="token" value="'.$token.'">';
+                                                        echo '<div class="form-group">';
+                                                                echo '<label class="sr-only" for="usuario">Email address</label>';
+                                                                echo '<input type="text" class="form-control" name="usuario" placeholder="Usuario" required>';
+                                                        echo '</div>';
+                                                        echo '<div class="form-group">';
+                                                                echo '<label class="sr-only" for="password">Password</label>';
+                                                                echo '<input type="password" class="form-control" name="password" placeholder="Password" required>';
+                                                        echo '</div>';
+                                                        echo '<div class="form-group">';
+                                                                echo '<button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>';
+                                                        echo '</div>';
+                                                    echo '</form>';
+                                                echo '</div>';
+                                            echo '</div>';
+                                        echo '</li>';
+                                    echo '</ul>';
+                                echo '</li>';
+                            echo '</ul>';
                         }
                     echo "</ul>";
                 echo "</div>";
@@ -125,4 +150,11 @@ class Menu_dinamico {
             echo"</div>";
         echo"</div>";
     }
+    
+    public function token()
+	{
+		$token = md5(uniqid(rand(),true));
+		$this->ci->session->set_userdata('token',$token);
+		return $token;
+	}
 }
