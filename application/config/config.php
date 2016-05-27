@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/intranet_resemin';
+$config['base_url'] = 'http://localhost:8080/intranet_resemin';
 
 /*
 |--------------------------------------------------------------------------

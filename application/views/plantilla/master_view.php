@@ -15,30 +15,43 @@
 		<div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="row">
-                        <div class="widget well">
-                            <h4 class="page-header">Aplicaciones</h4>
+                    <!--Panel-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Aplicaciones</h3>
+                        </div>
+                        <div class="panel-body">
+                            ...
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="widget well">
-                            <h4 class="page-header">Herramientas de comunicación</h4>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Herramientas de comunicacion</h3>
+                        </div>
+                        <div class="panel-body">
+                            ...
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="widget well">
-                            <h4 class="page-header">Categorias</h4>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Categorias</h3>
+                        </div>
+                        <div class="panel-body">
+                            ...
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="widget well">
-                            <h4 class="page-header">Próximos eventos</h4>
-                            <div>
-                                <a href="">Evento</a>
-                                2016-3-25
-                            </div>
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Próximos eventos</h3>
                         </div>
-                    </div>
+                        <div class="panel-body">
+                            ...
+                        </div>
+                    </div>                    
+                    <!--Fin Panel-->
                 </div>
                 <div class="col-md-9">
                     <? if($carousel)
